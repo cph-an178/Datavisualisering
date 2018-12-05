@@ -9,7 +9,6 @@ def test_conn():
         passwd = _arr[3]
 
     conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+user+';PWD='+passwd)
-    cursor = conn.cursor()
-    supplie = cursor.execute("SELECT * FROM SC010100").fetchone()
-
-    assert supplie != None
+    re = conn.cursor().execute("SELECT * FROM SC010100").fetchone()
+    
+    assert re != None
