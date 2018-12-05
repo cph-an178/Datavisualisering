@@ -1,15 +1,15 @@
 import pyodbc
 
 def test_conn():
-
-    server = "DESKTOP-9JD28UO"
-    database = "iScalaDB"
-    user = "db_reader"
-    passwd = "sqlPoli10et"
+    with open("sqlserver.txt", "r") as file:
+        _arr = file.read().split(",")
+        server = _arr[0]
+        database = _arr[1]
+        user = _arr[2]
+        passwd = _arr[3]
 
     conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+user+';PWD='+passwd)
     cursor = conn.cursor()
+    supplie = cursor.execute("SELECT * FROM SC010100").fetchone()
 
-    supplies_table = cursor.execute("SELECT * FROM SC010100").fetchall()
-
-    assert len(supplies_table) != 0
+    assert supplie != None
