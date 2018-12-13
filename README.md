@@ -9,10 +9,14 @@ Projektet vil blive skrevet i Python da det er det oplagte sprogt til at gennemg
 ---
 ### Brugbare tabeller fra iScalaDB
 
-iScalaDB har mange tabeller med nogle unikke navne, så her er en table med tabeller vi muligvis kan bruge.
+iScalaDB har mange tabeller med nogle unikke navne, så her er en tabel med tabeller vi muligvis kan bruge med link til iscaladb.com for hver relevant tabel.
 
-|     Navn     |   Beskrivelse   |
-| ------------ | --------------- |
-| **SL010100** | Kunde fil       |
-| **SL030100** | Salgsbogholderi |
-| **PL010100** | Leverandøere    |
+|     Navn     |     Beskrivelse    |
+| ------------ | ------------------ |
+| **[SC010100](http://iscaladb.com/Home/Table?t=588)** | Varer |
+| **[SL010100](http://iscaladb.com/Home/Table?t=146)** | Kunder|
+| **[SL030100](http://iscaladb.com/Home/Table?t=592)** |Salgsbogholderi|
+| **[PL010100](http://iscaladb.com/Home/Table?t=313)** | Leverandører       |
+| **[PC010100](http://iscaladb.com/Home/Table?t=153)** | Indkøbsordre hoved |
+| **[PC030100](http://iscaladb.com/Home/Table?t=589)** | Indkøbsordre linje |
+
