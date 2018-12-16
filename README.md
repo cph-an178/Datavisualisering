@@ -17,6 +17,6 @@ iScalaDB har mange tabeller med nogle unikke navne, så her er en tabel med tabe
 | **[SL010100](http://iscaladb.com/Home/Table?t=146)** | Kunder|
 | **[SL030100](http://iscaladb.com/Home/Table?t=592)** |Salgsbogholderi|
 | **[PL010100](http://iscaladb.com/Home/Table?t=313)** | Leverandører       |
-| **[PC010100](http://iscaladb.com/Home/Table?t=153)** | Indkøbsordre hoved |
-| **[PC030100](http://iscaladb.com/Home/Table?t=589)** | Indkøbsordre linje |
+| **[OR010100](http://iscaladb.com/Home/Table?t=393)** | Ordre hoved |
+| **[OR030100](http://iscaladb.com/Home/Table?t=253)** | Ordre linje |
 
