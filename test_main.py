@@ -42,7 +42,6 @@ def test_map_amount_to_month_annual():
 1.0, '13-04-2011': 1.0, '23-10-2015': 10.0}
 
     rs_dict = main.map_amount_to_month(test_dict, True)
-    print(rs_dict)
     assert len(rs_dict) == 12
 
 def test_map_amount_to_month_yearback():
@@ -55,5 +54,9 @@ def test_map_amount_to_month_yearback():
 1.0, '13-04-2011': 1.0, '23-10-2015': 10.0}
 
     rs_dict = main.map_amount_to_month(test_dict, False)
-    print(rs_dict)
     assert len(rs_dict) == 12
+
+def test_year_dict_plot():
+    # This dictionay is from test_map_amount_to_month_yearback
+    year_dict = {'Jan': 0, 'Feb': 0, 'Mar': 0, 'Apr': 0, 'May': 0, 'Jun': 8.0, 'Jul': 0, 'Aug': 9.0, 'Sep': 0.0, 'Oct': 18.0, 'Nov': 16.0, 'Dec': 0}
+    main.plot_amount_month(year_dict)

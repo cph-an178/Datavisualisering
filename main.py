@@ -1,5 +1,6 @@
 import pyodbc
 import datetime
+import matplotlib.pyplot as plt
 
 with open("sqlserver.txt", "r") as file:
     _arr = file.read().split(",")
@@ -92,3 +93,11 @@ def map_amount_to_month(date_amount_dict, annual_boolean):
                 rs_dict[m] += float(e[1])
 
     return rs_dict
+
+def plot_amount_month(year_amount_dict):
+    months = list(year_amount_dict.keys())
+    amount = list(year_amount_dict.values())
+    plt.plot(months, amount)
+    # plt.plot(range(len(year_amount_dict)), list(year_amount_dict.values()), align='center')
+    # plt.xticks(range(len(year_amount_dict)), list(year_amount_dict.keys()))
+    plt.show()
