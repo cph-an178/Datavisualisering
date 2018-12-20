@@ -23,7 +23,7 @@ def test_create_date_amount_product():
     # We know that the dictionary's length should be larger than 0
     assert len(date_amount_dict) != 0
 
-def test_create_date_amount_prod_groupe():
+def test_create_date_amount_prod_group():
     """
         This test makes sure that our create_date_amount_dict function
         can also create an dictionary of a product group
@@ -31,3 +31,29 @@ def test_create_date_amount_prod_groupe():
     product_group = "101"
     date_amount_dict = main.create_date_amount_dict(product_group)
     assert len(date_amount_dict) != 0
+
+def test_map_amount_to_month_annual():
+    """
+        This test makes sure that the function can map the amount from a
+        dictionay to the corresponding month for current year jan-dec
+    """
+    # This dictionary is from test_create_Date_amount_prod_group
+    test_dict = {'10-10-2014': 217.0, '26-04-2017': 21.0, '12-06-2018': 900.0, '07-11-2018': 30.0, '06-06-2018': 10.0, '29-08-2018': 30.0, '12-11-2018': 4.0, '01-11-2018': 29.0, '25-10-2018': 1.0, '27-10-2010': 1.0, '06-11-2018': 10.0, '24-10-2018': 20.0, '07-08-2014': 94.0, '10-09-2018': 12.0, '29-10-2018': 400.0, '05-11-2010':
+1.0, '13-04-2011': 1.0, '23-10-2015': 10.0}
+
+    rs_dict = main.map_amount_to_month(test_dict, True)
+    print(rs_dict)
+    assert len(rs_dict) == 12
+
+def test_map_amount_to_month_yearback():
+    """
+        This test makes sure that the function can map the amount from a
+        dictionay to the corresponding month for current year jan-dec
+    """
+    # This dictionary is from test_create_Date_amount_prod_group
+    test_dict = {'10-10-2014': 217.0, '26-04-2017': 21.0, '12-06-2018': 900.0, '07-11-2018': 30.0, '06-06-2018': 10.0, '29-08-2018': 30.0, '12-11-2018': 4.0, '01-11-2018': 29.0, '25-10-2018': 1.0, '27-10-2010': 1.0, '06-11-2018': 10.0, '24-10-2018': 20.0, '07-08-2014': 94.0, '10-09-2018': 12.0, '29-10-2018': 400.0, '05-11-2010':
+1.0, '13-04-2011': 1.0, '23-10-2015': 10.0}
+
+    rs_dict = main.map_amount_to_month(test_dict, False)
+    print(rs_dict)
+    assert len(rs_dict) == 12
