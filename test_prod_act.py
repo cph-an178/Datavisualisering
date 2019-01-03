@@ -53,7 +53,7 @@ def test_get_orders_from_product_list_fail():
     with pytest.raises(ValueError):
         pa.get_orders_from_product_list(cursor, product_cat, timeframe_dict)
 
-""" Tests somehow breaks ???
+
 def test_main_prod_success():
     search_type = "prod"
     search_number = "342412"
@@ -73,3 +73,4 @@ def test_plot():
     plot_type = "bar"
     pa.plot_amount_month(activity_dict, plot_type)
 
+"""

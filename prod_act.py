@@ -21,10 +21,10 @@ def create_timeframe_dict(timeframe):
         for i in range(1, 13):
             timeframe_dict[datetime(current_year, i, 1).strftime('%B-%Y')] = 0
     elif timeframe == "last12months": 
-        starting_month = current_date.month + 1
-        starting_year = current_date.year
-        for i in range(12):
-            if starting_month + i < 12:
+        starting_month = current_date.month # 1
+        starting_year = current_date.year # 2019
+        for i in range(1, 13):
+            if starting_month + i <= 12:
                 pre_year = starting_year - 1
                 timeframe_dict[datetime(pre_year, starting_month + i, 1).strftime('%B-%Y')] = 0
             else:
