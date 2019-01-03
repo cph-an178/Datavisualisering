@@ -17,12 +17,7 @@ def connect_to_db(db_connection_file):
 
 def main():
     cursor = connect_to_db("sqlserver.txt")
-    sql_table = sys.argv[1] # "SC010100"
-    sql_row = sys.argv[2] # "SC01001"
-    search_num = sys.argv[3] # "342412"
-    rs_list = dummy_def(cursor, sql_table, sql_row, search_num)
-    for i in rs_list:
-        print(i)
+    # Create lisening functions
 
 
 if __name__ == "__main__":
