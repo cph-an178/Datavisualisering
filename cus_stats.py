@@ -37,4 +37,26 @@ def get_all_orders(cursor, customer_number):
 
         # Then we return the dictionary
         return rs_dict
-    
+
+def get_most_popular_months(orders_dict):
+    # This function takes an orders dictionary and returns
+    # a month dictionary for most popular months
+
+
+    # First we create an month dictionary
+    m_dict = {}
+
+    # Then we create the 12 months 
+    for m in range(1,13):
+        m_dict[datetime(2010, m, 1).strftime("%B")] = 0
+
+    # Then we go through the orders
+    for i in [*orders_dict.keys()]:
+        
+        # Get first orderline to get the month of the order
+        month = orders_dict[i].value()[3].split("-")[0]
+
+        m_dict[month] += 1
+
+    return m_dict
+        
