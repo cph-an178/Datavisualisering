@@ -38,7 +38,7 @@ def get_all_orders(cursor, customer_number):
         # Then we return the dictionary
         return rs_dict
 
-def get_most_popular_months(orders_dict):
+def get_most_active_months(orders_dict):
     # This function takes an orders dictionary and returns
     # a month dictionary for most popular months
 
@@ -59,4 +59,5 @@ def get_most_popular_months(orders_dict):
         m_dict[month] += 1
 
     return m_dict
+
         

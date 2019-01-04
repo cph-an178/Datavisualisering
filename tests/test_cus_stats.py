@@ -28,12 +28,19 @@ def test_get_most_active_months_success():
     # OrderNumber, StockCode, UnitPrice, Quantity, OrderDate
     orders_dict = {'0001': ['342412', 20.0, 4.0, 'January-2018'], '0002': ['342412', 20.0, 4.0, 'January-2018'], '0003': ['342412', 20.0, 4.0, 'January-2018'],
                 '0004': ['342412', 20.0, 4.0, 'February-2018'], '0005': ['342412', 20.0, 4.0, 'February-2018'], '0006': ['342412', 20.0, 4.0, 'March-2018']}
-    rs = cs.get_most_popular_months(orders_dict)
+    rs = cs.get_most_active_months(orders_dict)
     assert rs['January'] is 3
     assert rs['February'] is 2
     assert rs['March'] is 1
 
-def test_get_most_popular_product():
+def test_get_most_popular_product_success():
     orders_dict = {'0001': ['342412', 20.0, 4.0, 'January-2018'], '0002': ['342412', 20.0, 4.0, 'January-2018'], '0003': ['342412', 20.0, 4.0, 'January-2018'],
                 '0004': ['342412', 20.0, 4.0, 'February-2018'], '0005': ['342412', 20.0, 4.0, 'February-2018'], '0006': ['342412', 20.0, 4.0, 'March-2018']}
     pass
+
+def test_main_active_months_success():
+    pass
+
+def test_main_popular_product_success():
+    pass
+

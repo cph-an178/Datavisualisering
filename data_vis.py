@@ -17,20 +17,41 @@ def connect_to_db(db_connection_file):
     return conn.cursor()
 
 def main():
-    # First we create Argparse to help guide users
-    # for how to use our program
+    # Vi kunne godt tænke os at programmet virker ligesom rigtige
+    # Python programmer. Derfor vil vi bruge biblioteket 'argparse'
+    # til at kunne køre forskellige dele af programmet ud fra hvilke
+    # system arguments den får
+
+    # Først laver en en ArgumentParser
     parser = argparse.ArgumentParser()
+
+    # Derefter tilføjer vi de to Arguments vi gerne vil kunne køre
     parser.add_argument("-cs", "--customer_statistics", help="To get statistics for an customer", action="store_true")
     parser.add_argument("-pa", "--product_activity", help="To get info about product or product category activity", action="store_true")
+    # Vi giver dem en kort argument med en "-" og en lang argument med "--"
+    # Vi giver også hver argument en hjælpe tekst til at forklare hvad de gør
+    # Til sidste giver vi dem en action "store_true" så vi kan kalde dem
+    # Senere i koden
+
+    # Vi parser vores nye arguments
     args = parser.parse_args()
 
+    # Vores metoder skal bruge en pyodbc cursor så vi laver en variable
+    # der kalder vores connect_to_db metode med en textfil sti
     cursor = connect_to_db("sqlserver.txt")
 
+    # Vi laver nogle tjek på om programmet for de rigtige arguments
     if args.customer_statistics:
+        # Hvis man skrev "-ca" eller "--customer_statistics" køre vi denne
+        # funtion
         customer_statistics(cursor)
-    if args.product_activity:
+    elif args.product_activity:
+        # Eller hvis man skrev "-ca" eller "--customer_statistics" køre vi 
+        # denne funtion
         product_activity(cursor)
     else:
+        # Hvis man ikke giver noget argument eller et der ikke findes
+        # printer vi en hjælpe beksed
         print("Use -h or --help for help with this program")
 
 def customer_statistics(cursor):

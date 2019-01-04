@@ -30,17 +30,44 @@ def test_create_timeframe_dict_last12months_success():
     assert rs_dict_keys[-1] == datetime.now().strftime('%B-%Y')
 
 def test_get_orders_success():
+    # Først beskriver vi i funtion navnet hvad det tester
+    # og om den skal lykkes eller fejle
+
+    # Derefter laver vi et tidsramme dictionary, selvom vi
+    # har en funktion der laver et for os er det vigtigt 
+    # at ens tests ikke er afhængige af hinanden 
     timeframe_dict = {'January-2018': 0, 'February-2018': 0, 'March-2018': 0, 'April-2018': 0, 'May-2018': 0, 'June-2018': 0, 
                 'July-2018': 0, 'August-2018': 0, 'September-2018': 0, 'October-2018': 0, 'November-2018': 0, 'December-2018': 0}
+
+    # Derefter laver vi et produkt nummer som den skal søge
+    # efter
     product_nr = "342412"
+
+    # Så laver vi vores result variable som kalder den 
+    # funktion vi ønsker at teste. Funktionen retunere 
+    # et dictionary
     rs = pa.get_orders(cursor, product_nr, timeframe_dict)
+
+    # Til sidte asserter vi at summen af alle værdierne
+    # af resultat dictionary er større end 1000.00
     assert sum([*rs.values()]) > 1000.00
 
 def test_get_orders_fail():
+    # I denne test skal funktionen fejle
+
+    # Ligesom før laver vi et tidsramme dictionary
     timeframe_dict = {'January-2018': 0, 'February-2018': 0, 'March-2018': 0, 'April-2018': 0, 'May-2018': 0, 'June-2018': 0, 
                 'July-2018': 0, 'August-2018': 0, 'September-2018': 0, 'October-2018': 0, 'November-2018': 0, 'December-2018': 0}
+    
+    # Så skriver vi et produkt nummer som vi ved vil
+    # fejle
     product_nr = "fail"
+
+    # Derefter bruger vi pytests raises funktion til at
+    # teste om vores funktion raiser den ønskede error
     with pytest.raises(ValueError):
+        # I dette tilfælde vil vi gerne have en ValueError
+        # når vi kalder funktionen
         pa.get_orders(cursor, product_nr, timeframe_dict)
 
 def test_get_orders_from_product_list_success():
