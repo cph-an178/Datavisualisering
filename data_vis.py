@@ -79,7 +79,6 @@ def product_activity(cursor):
         except ValueError as e:
             print(e)
             should_restart = True
-            break
         else:
             pa.plot_amount_month(rs_dict, 'bar')
 
