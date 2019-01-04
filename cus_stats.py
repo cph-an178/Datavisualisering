@@ -50,11 +50,11 @@ def get_most_popular_months(orders_dict):
     for m in range(1,13):
         m_dict[datetime(2010, m, 1).strftime("%B")] = 0
 
-    # Then we go through the orders
+    # Then we go through the orders'
     for i in [*orders_dict.keys()]:
         
         # Get first orderline to get the month of the order
-        month = orders_dict[i].value()[3].split("-")[0]
+        month = orders_dict[i][3].split('-')[0]
 
         m_dict[month] += 1
 
