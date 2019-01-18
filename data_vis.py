@@ -1,19 +1,39 @@
 import sys
 import pyodbc
 import argparse
-import prod_act as pa
+import modules.prod_act as pa
 
 def connect_to_db(db_connection_file):
+    # Denne metode tager en parameter som skal være
+    # en tekstfil med information til den database
+    # man vil have forbindelse til.
+
+    # Vi bruger with open til til at læse filen og
+    # giver en en extra parameter "r" som betyder 'read'
+    # Det gør at den kun læser filen og kan ikke skrive
+    # til den.
     with open(db_connection_file, "r") as file:
+
+        # Vi læser filen og splitter den fra kommaerne
+        # og laver en liste af resultatet
         _l = file.read().split(",")
+
+        # Derefter laver vi de variabler vi skal bruge
+        # for at komme på en SQL server og tildeler dem
+        # elemterne fra listen
         server = _l[0]
         database = _l[1]
         user = _l[2]
         passwd = _l[3]
     
+    # Så bruger vi pyodbc's connect funktion parse en SQL
+    # Connection String med vores variabler indsat de
+    # korrekte steder
     conn = pyodbc.connect(r'DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='
                     +user+';PWD='+passwd)
 
+    # Til sidst retunere vi et cursor objekt som man kan
+    # bruge til at lave SQL kald til databasen
     return conn.cursor()
 
 def main():
@@ -95,12 +115,21 @@ def product_activity(cursor):
             should_restart = True
             break
         
+        # Efter vi har fået vores search_type, search_number og
+        # timeframe laver vi en try/expect blok
         try:
+            # Først prøver den at kalde main metoden i prod_act.py
             rs_dict = pa.main(cursor, search_type,search_number, timeframe)
         except ValueError as e:
+            # Hvis den får en ValueError printer den fejlen så brugen
+            # kan se hvad der gik galt
             print(e)
+            # Derefter ændre den restart boolean'en så metoden køre
+            # igen
             should_restart = True
         else:
+            # Hvis den ikke får en ValueError plotter den resultatet
+            # den fik fra main metoden
             pa.plot_amount_month(rs_dict, 'bar')
 
 if __name__ == "__main__":

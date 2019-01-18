@@ -33,18 +33,19 @@ def create_timeframe_dict(timeframe):
     return timeframe_dict
     
 def get_orders(cursor, product_nr, timeframe_dict):
-    # SQL call that returns Quantity and Order date
-    orders = cursor.execute("SELECT OR12011, OR12015 FROM OR120100 WHERE OR12006 = CONVERT( nvarchar,'" 
+
+    orders = cursor.execute("SELECT OR12011 as qty, OR12015 as dato FROM OR120100 "
+                            + "WHERE OR12006 = CONVERT( nvarchar,'" 
                             + product_nr + "');").fetchall()
-    
+
     if not orders:
-        raise ValueError("Could not find any product with product number {}".format(product_nr))
+        raise ValueError("Could not find any product with product number {}"
+                        .format(product_nr))
     else:
         for i in orders:
             key = i[1].date().strftime("%B-%Y")
             if key in [*timeframe_dict.keys()]:
                 timeframe_dict[key] += float(i[0])
-        
         return timeframe_dict
 
 def get_orders_from_product_list(cursor, product_cat, timeframe_dict):
@@ -69,13 +70,16 @@ def get_orders_from_product_list(cursor, product_cat, timeframe_dict):
         return timeframe_dict
 
 def plot_amount_month(activity_dict, plot_type):
+    # Denne funktion tager et aktivitets diagram og en plot type
+
+    months = [*activity_dict.keys()]
+    amount = [*activity_dict.values()]
+
     if plot_type is "bar":
-        plt.bar(range(len(activity_dict)), list(activity_dict.values()))
-        plt.xticks(range(len(activity_dict)), list(activity_dict.keys()), rotation='vertical')
+        plt.bar(months, amount)
     elif plot_type is "plot":
-        months = [*activity_dict.keys()]
-        amount = [*activity_dict.values()]
         plt.plot(months, amount)
-   
+    
+    plt.xticks(rotation=60)
     plt.title("Product Activity graph")
     plt.show()

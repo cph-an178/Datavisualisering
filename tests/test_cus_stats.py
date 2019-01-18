@@ -1,6 +1,6 @@
 import pyodbc
 import pytest
-import cus_stats as cs
+import modules.cus_stats as cs
 
 with open("sqlserver.txt", "r") as file:
     _l = file.read().split(",")
